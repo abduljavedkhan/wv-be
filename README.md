@@ -125,6 +125,10 @@ curl --location 'http://localhost:3001/api/workout-plans' \
   ]
 }'
 ```
+#### RESPONSE:
+
+<img width="897" height="643" alt="image" src="https://github.com/user-attachments/assets/c72c5a18-dd55-417b-9069-8924e9150fd3" />
+
 
 ```bash
 # List plans
@@ -136,6 +140,11 @@ curl -X GET http://localhost:3001/api/workout-plans/PLAN_ID \
 --header "Authorization: Bearer YOUR_ACCESS_TOKEN"
 
 ```
+#### RESPONSE:
+
+<img width="899" height="645" alt="image" src="https://github.com/user-attachments/assets/35b90e52-e0f0-4c56-a043-58dc67a63b88" />
+
+
 
 ### Availability
 
@@ -154,6 +163,9 @@ curl --location 'http://localhost:3001/api/availability' \
   "sessionName": "PT"
 }'
 ```
+#### RESPONSE:
+
+<img width="907" height="397" alt="image" src="https://github.com/user-attachments/assets/7d3e5e6f-0d5c-43ae-b4a7-395feb51866e" />
 
 ```bash
 # List open slots
@@ -180,6 +192,10 @@ curl --location 'http://localhost:3001/api/bookings' \
     "endTime": "2024-07-24T11:00:00.000Z"
 }'
 ```
+#### RESPONSE:
+
+<img width="904" height="621" alt="image" src="https://github.com/user-attachments/assets/3fc68ebe-81be-4dc8-813d-dd5011bc44c4" />
+
 
 ```bash
 # List my bookings
