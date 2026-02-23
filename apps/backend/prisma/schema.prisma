@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String        @id @default(uuid())
+  name          String
+  email         String        @unique
+  googleId      String        @unique
+  role          String        @default("user")
+  createdAt     DateTime      @default(now())
+  workoutPlans  WorkoutPlan[]
+  availability  Availability[]
+  bookings      BookedSlot[]
+}
+
+model WorkoutPlan {
+  id        String       @id @default(uuid())
+  title     String
+  duration  Int
+  createdAt DateTime     @default(now())
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  description  String?
+  days      WorkoutDay[]
+}
+
+model WorkoutDay {
+  id            String            @id @default(uuid())
+  dayName       String
+  orderIndex    Int
+  workoutPlan   WorkoutPlan       @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
+  workoutPlanId String
+  exercises     WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id           String     @id @default(uuid())
+  exerciseName String
+  sets         Int
+  reps         Int
+  workoutDay   WorkoutDay @relation(fields: [workoutDayId], references: [id], onDelete: Cascade)
+  workoutDayId String
+}
+
+model Availability {
+  id              String       @id @default(uuid())
+  date            DateTime
+  startTime       DateTime
+  endTime         DateTime
+  repeatSession   Boolean      @default(false)
+  repeatUntilDate DateTime?
+  sessionName     String
+  createdBy       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  bookings        BookedSlot[]
+}
+
+model BookedSlot {
+  id             String       @id @default(uuid())
+  availability   Availability @relation(fields: [availabilityId], references: [id], onDelete: Cascade)
+  availabilityId String
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+  selectedDate   DateTime
+  startTime      DateTime
+  endTime        DateTime
+  createdAt      DateTime     @default(now())
+}
