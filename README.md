@@ -1,12 +1,9 @@
 # WellVantage
 
-WellVantage gym management platform.
-
-## Structure
+Gym management platform
 
 ## Tech Stack **`apps/backend`** 
-
-– NestJS API 
+- NestJS API 
 - Node.js 18+
 - Google OAuth credentials
 - Prisma
